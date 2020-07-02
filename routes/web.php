@@ -18,5 +18,11 @@ Route::get('/', function () {
 });
 
 Route::get('/php', function () {
+
+    if (defined('PDO::ATTR_DRIVER_NAME')) {
+        echo 'PDO is available';
+    }
+    exit;
+    phpinfo();
     return '<h1>php works</h1>';
 });

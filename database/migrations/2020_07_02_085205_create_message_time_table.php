@@ -16,7 +16,7 @@ class CreateMessageTimeTable extends Migration
         Schema::create('message_time', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('message_id')->unsigned();
+            $table->bigInteger('message_id')->unsigned();;
             $table->foreign('message_id')
                 ->references('id')
                 ->on('messages')
