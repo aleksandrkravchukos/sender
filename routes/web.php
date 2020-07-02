@@ -17,9 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/api/addDocument', 'ElasticController@addDocument')->name('addDocument');
-Route::post('/api/searchDocument', 'ElasticController@searchDocument')->name('searchDocument');
-
 Route::get('/php', function () {
     return '<h1>php works</h1>';
 });
