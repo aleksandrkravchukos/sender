@@ -1,11 +1,11 @@
 <?php
 
-use App\Clients;
+use App\Client;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class ClientsSeeder extends Seeder
+class ClientSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,14 +15,14 @@ class ClientsSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 5000; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
             try {
                 $strRandom = Str::random(50);
 
-                DB::table('clients')->insert([
+                DB::table('client')->insert([
                     'name' => $strRandom,
                     'email' => $strRandom . '@gmail.com',
-                    'time_zone' => random_int(-11, 12),
+                    'time_zone' => random_int(0, 23),
                 ]);
 
                 echo 'Client ' . $i . ' - ' . $strRandom . ' created' . PHP_EOL;

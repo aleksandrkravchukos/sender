@@ -13,12 +13,15 @@ class MessageSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 1000; $i++) {
+        DB::table('message')->truncate();
+        DB::table('message_time')->truncate();
+
+        for ($i = 0; $i < 100; $i++) {
             try {
-                $strRandom = Str::random(200);
+                $strRandom = Str::random(100);
                 echo 'message ' . $i . ' - ' . $strRandom . PHP_EOL;
 
-                DB::table('messages')->insert([
+                DB::table('message')->insert([
                     'message' => $strRandom,
                 ]);
             } catch (Exception $exception) {

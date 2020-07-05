@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMessageTimeTable extends Migration
+class CreateMessageTimeInTimeZoneTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateMessageTimeTable extends Migration
      */
     public function up()
     {
-        Schema::create('message_time', function (Blueprint $table) {
+        Schema::create('message_time_in_time_zone', function (Blueprint $table) {
             $table->id();
-
-            $table->bigInteger('message_id')->unsigned();;
-            $table->foreign('message_id')
+            $table->bigInteger('message_time_id')->unsigned();;
+            $table->foreign('message_time_id')
                 ->references('id')
-                ->on('message')
+                ->on('message_time')
                 ->onDelete('no action');
 
-            $table->string('start_time', 5);
+            $table->integer('timezone_shift');
+            $table->string('time_in_timezome');
 
             $table->timestamps();
         });
@@ -35,6 +35,6 @@ class CreateMessageTimeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('message_time');
+        Schema::dropIfExists('message_time_in_time_zone');
     }
 }

@@ -3,25 +3,31 @@
 namespace App\Http\Controllers;
 
 
-use App\Mail\EmailForQueuing;
-use App\MessageTime;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Mail;
+use App\Repository\MessageRepository;
 
 class TestController extends Controller
 {
+    private $messageRepository;
+
+    public function __construct(MessageRepository $messageRepository)
+    {
+        $this->messageRepository = $messageRepository;
+    }
 
     public function test()
     {
 
-        $messagesTime = MessageTime::where('start_time', '<=', Carbon::now()->toDateTimeString())->limit(2)->get();
+        //$messages = $this->messageRepository->getAllMessagesByTime('17:00');
+        $messages = $this->messageRepository->getMessagesForSendByTime('16:10');
 
-        foreach ($messagesTime as $oneRow) {
-            $realMessage = $oneRow->message->message;
-
-            Mail::to('leos2000@gmail.com')
-                ->send(new EmailForQueuing(strval($realMessage)));
-        }
+        dd($messages);
+//
+//        foreach ($messagesTime as $oneRow) {
+//            $realMessage = $oneRow->message->message;
+//
+//            Mail::to('leos2000@gmail.com')
+//                ->send(new EmailForQueuing(strval($realMessage)));
+//        }
 
     }
 }

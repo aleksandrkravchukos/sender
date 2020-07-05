@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Messages extends Model
+class Message extends Model
 {
 
-    protected $table = 'messages';
+    protected $table = 'message';
 
     /**
      * The attributes that are mass assignable.

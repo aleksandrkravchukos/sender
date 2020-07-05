@@ -1,6 +1,6 @@
 <?php
 
-use App\Messages;
+use App\Message;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,12 +15,13 @@ class MessageTimeSeeder extends Seeder
      */
     public function run()
     {
-        $length = 1000;
+        $length = 500;
         for ($i = 1; $i <= $length; $i++) {
             try {
-                $message = Messages::where('id', '>', 0)->offset($i)->limit(1)->first();
+                $message = Message::where('id', '>', 0)->offset($i)->limit(1)->first();
                 if ($message) {
-                    $time = Carbon::now()->addMinute($i)->toDateTimeString();
+                    $time = Carbon::now()->addMinute($i)->format('H:i');
+
                     echo 'Message ' . $message . ' inserted with time ' . $time;
                     DB::table('message_time')
                         ->insert([

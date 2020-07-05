@@ -5,12 +5,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MessageTime extends Model
+class Client extends Model
 {
 
-    protected $connection = 'mysql';
-
-    protected $table = 'message_time';
+    protected $table = 'client';
 
     /**
      * The attributes that are mass assignable.
@@ -18,8 +16,9 @@ class MessageTime extends Model
      * @var array
      */
     protected $fillable = [
-        'message_id',
-        'start_time',
+        'name',
+        'email',
+        'time_zone',
     ];
 
     /**
@@ -37,17 +36,6 @@ class MessageTime extends Model
      * @var array
      */
     protected $casts = [
-
+        'email_verified_at' => 'datetime',
     ];
-
-
-    public function message()
-    {
-        return $this->belongsTo('App\Message');
-    }
-
-    public function messageTimeInTimeZone()
-    {
-        return $this->HasMany(MessageTimeInTimeZone::class, 'message_time_id');
-    }
 }

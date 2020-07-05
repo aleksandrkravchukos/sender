@@ -5,10 +5,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Clients extends Model
+class MessageTimeInTimeZone extends Model
 {
 
-    protected $table = 'clients';
+    protected $connection = 'mysql';
+
+    protected $table = 'message_time_in_time_zone';
 
     /**
      * The attributes that are mass assignable.
@@ -16,9 +18,9 @@ class Clients extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'time_zone',
+        'message_time_id',
+        'timezone_shift',
+        'time_in_timezome',
     ];
 
     /**
@@ -36,6 +38,11 @@ class Clients extends Model
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+
     ];
+
+    public function messageTime()
+    {
+        return $this->belongsTo('App\MessageTime');
+    }
 }
