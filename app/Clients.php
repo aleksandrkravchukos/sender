@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Clients extends Model
 {
 
-    protected $table = 'ClientsSeeder';
+    protected $table = 'clients';
 
     /**
      * The attributes that are mass assignable.
