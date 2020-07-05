@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Mail;
 
 class Sender implements SenderInterface
 {
-    protected $response;
     protected $debug = false;
 
     private $messageRepository;
@@ -25,22 +24,15 @@ class Sender implements SenderInterface
         $this->mailTo = '';
     }
 
-    public function setResponse($response)
-    {
-        $this->response = $response;
-    }
-
     /**
      * Sender email.
      */
     public function addMinuteEmailsToQueue(string $time)
     {
+
         $messages = $this->messageRepository->getMessagesForSendByTime($time);
 
         foreach ($messages as $message) {
-            $this->messageToSend = $message->message;
-            $subject = 'Test subject - ' . $this->messageToSend;
-            $this->mailTo = $message->email;
 
             if (env('SEND_REAL_MESSAGE') === true) {
                 Mail::to($this->mailTo)

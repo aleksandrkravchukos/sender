@@ -24,6 +24,7 @@ class MessageRepository implements MessageRepositoryInterface
                 ->join('client', 'message_time_in_time_zone.timezone_shift', '=', 'client.time_zone')
                 ->where('time_in_timezome', $time)
                 ->get()->toArray();
+
         } catch (Exception $exception) {
             echo $exception->getMessage();
         }

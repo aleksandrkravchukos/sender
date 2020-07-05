@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Functional;
 
 use App\Client;
 use App\Message;
@@ -13,7 +13,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
-class MessageTest extends TestCase
+class MessageRepositoryTest extends TestCase
 {
     use DatabaseTransactions;
 
@@ -91,7 +91,7 @@ class MessageTest extends TestCase
     }
 
     /** @test */
-    public function getSenderInfoByTime()
+    public function successGetSenderInfoByTime()
     {
         $result = $this->repository->getMessagesForSendByTime('10:00');
 

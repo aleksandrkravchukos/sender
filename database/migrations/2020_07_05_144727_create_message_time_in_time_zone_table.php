@@ -24,7 +24,13 @@ class CreateMessageTimeInTimeZoneTable extends Migration
             $table->integer('timezone_shift');
             $table->string('time_in_timezome');
 
+            $table->index([
+                'timezone_shift',
+                'time_in_timezome'
+            ]);
             $table->timestamps();
+
+
         });
     }
 
