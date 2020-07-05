@@ -30,9 +30,17 @@ Install Docker.
 
      docker-compose up -d
      
+## Install packages
+
+     docker exec -it app_task composer install 
+     
 ## Execute migrations for real database
 
      docker exec -it app_task php artisan migrate 
+
+## Create test database
+
+     docker exec -it  mysql_task_email mysql -uroot -proot -e "CREATE DATABASE test_content"
 
 ## Execute migrations for tests database
 

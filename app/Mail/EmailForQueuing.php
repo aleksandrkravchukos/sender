@@ -12,16 +12,14 @@ class EmailForQueuing extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $message;
-
-    private $subject;
+    public $message;
 
     /**
      * Create a new message instance.
      *
      * @param string $message
      */
-    public function __construct(string $message )
+    public function __construct(string $message)
     {
         $this->message = $message;
     }

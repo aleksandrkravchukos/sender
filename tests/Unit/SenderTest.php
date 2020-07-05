@@ -72,14 +72,11 @@ class SenderTest extends TestCase
 
         $this->sender = new Sender($repositoryStub);
 
-        // TODO mailer fake
     }
 
     public function setUp(): void
     {
         parent::setUp();
- // ?? ХЗ пондобится ли
-
     }
 
     /** @test */
@@ -103,5 +100,4 @@ class SenderTest extends TestCase
             return true;
         });
     }
-
 }
