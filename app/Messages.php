@@ -2,12 +2,12 @@
 
 namespace App;
 
-
-use App\Models\PostCategory;
 use Illuminate\Database\Eloquent\Model;
 
 class Messages extends Model
 {
+
+    protected $table = 'messages';
 
     /**
      * The attributes that are mass assignable.

@@ -8,13 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class MessageTime extends Model
 {
 
+    protected $table = 'message_time';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'message',
+        'message_id',
+        'start_time',
     ];
 
     /**
