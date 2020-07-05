@@ -4,9 +4,7 @@ namespace App\Services;
 
 
 use App\Mail\EmailForQueuing;
-use App\MessageTime;
-use App\Repository\MessageRepository;
-use Carbon\Carbon;
+use App\Repository\MessageRepositoryInterface;
 use Illuminate\Support\Facades\Mail;
 
 class Sender implements SenderInterface
@@ -20,9 +18,9 @@ class Sender implements SenderInterface
 
     private $mailTo;
 
-    public function __construct()
+    public function __construct(MessageRepositoryInterface $messageRepository)
     {
-        $this->messageRepository = new MessageRepository();
+        $this->messageRepository = $messageRepository;
         $this->messageToSend = '';
         $this->mailTo = '';
     }
@@ -33,36 +31,24 @@ class Sender implements SenderInterface
     }
 
     /**
-     * @param int $debug
-     */
-    public function setDebug(int $debug)
-    {
-        $this->debug = $debug;
-    }
-
-    public function log(string $message)
-    {
-        if ($this->debug) {
-            echo $message . "\n";
-        }
-    }
-
-    /**
      * Sender email.
      */
-    public function request()
+    public function addMinuteEmailsToQueue(string $time)
     {
-
-        $time = Carbon::now()->format('H:i');
         $messages = $this->messageRepository->getMessagesForSendByTime($time);
-        dd($messages);
-//        foreach ($messagesTime as $oneRow) {
-//            $realMessage = $oneRow->message->message;
-//            if (env('SEND_REAL_MESSAGE') === true) {
-//                Mail::to('leos2000@gmail.com')
-//                    ->send(new EmailForQueuing(strval($realMessage)));
-//            }
-//        }
 
+        foreach ($messages as $message) {
+            $this->messageToSend = $message->message;
+            $subject = 'Test subject - ' . $this->messageToSend;
+            $this->mailTo = $message->email;
+
+            if (env('SEND_REAL_MESSAGE') === true) {
+                Mail::to($this->mailTo)
+                    ->send(new EmailForQueuing(strval($this->messageToSend), $subject));
+                echo 'Mail message - ' . $this->messageToSend . ' real send to ' . $this->mailTo . PHP_EOL;
+            } else {
+                echo 'Mail message - ' . $this->messageToSend . ' should be send to ' . $this->mailTo . PHP_EOL;
+            }
+        }
     }
 }

@@ -11,9 +11,5 @@ interface SenderInterface
 
     public function setResponse($response);
 
-    public function setDebug(int $debug);
-
-    public function log(string $message);
-
-    public function request();
+    public function addMinuteEmailsToQueue(string $time);
 }

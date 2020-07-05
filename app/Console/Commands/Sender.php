@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Services\Sender as SenderMail;
+use App\Services\SenderInterface as SenderInterface;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class Sender extends Command
@@ -14,9 +15,15 @@ class Sender extends Command
      */
     protected $signature = 'send';
 
-    public function __construct()
+    /**
+     * @var SenderInterface
+     */
+    private $senderMail;
+
+    public function __construct(SenderInterface $senderMail)
     {
         parent::__construct();
+        $this->senderMail = $senderMail;
     }
 
     /**
@@ -26,8 +33,7 @@ class Sender extends Command
      */
     public function handle()
     {
-        $service = new SenderMail();
-        $service->setDebug(true);
-        $service->request();
+        $time = Carbon::now()->format('H:i');
+        $this->senderMail->addMinuteEmailsToQueue($time);
     }
 }

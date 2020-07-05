@@ -14,13 +14,17 @@ class EmailForQueuing extends Mailable
 
     private $message;
 
+    private $subject;
+
     /**
      * Create a new message instance.
      *
      * @param string $message
+     * @param string $subject
      */
-    public function __construct(string $message)
+    public function __construct(string $message, string $subject)
     {
+        $this->subject = $subject;
         $this->message = $message;
     }
 
@@ -32,7 +36,7 @@ class EmailForQueuing extends Mailable
     public function build()
     {
         return $this->from(SenderInterface::SAMPLE_SEND_TO_EMAIL, SenderInterface::SAMPLE_SEND_TO_NAME)
-            ->subject('Test Queued Email')
+            ->subject($this->subject)
             ->view('emails.example_mail')
             ->with([
                 'body_message' => $this->message

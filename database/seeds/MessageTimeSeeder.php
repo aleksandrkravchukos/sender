@@ -15,7 +15,7 @@ class MessageTimeSeeder extends Seeder
      */
     public function run()
     {
-        $length = 500;
+        $length = 100;
         for ($i = 1; $i <= $length; $i++) {
             try {
                 $message = Message::where('id', '>', 0)->offset($i)->limit(1)->first();

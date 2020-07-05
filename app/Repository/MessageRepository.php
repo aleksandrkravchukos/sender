@@ -3,30 +3,11 @@
 
 namespace App\Repository;
 
-
-use App\MessageTime;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
 class MessageRepository implements MessageRepositoryInterface
 {
-
-    /**
-     * @param string $time
-     * @return array
-     */
-    public function getAllMessagesByTime(string $time): array
-    {
-
-        $messagesTime = MessageTime::where('start_time', '=', $time)->get();
-        $realMessages = [];
-
-        foreach ($messagesTime as $oneRow) {
-            $realMessages[] = $oneRow->message->message;
-        }
-
-        return $realMessages;
-    }
 
     /**
      * @param string $time

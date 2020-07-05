@@ -13,9 +13,6 @@ class MessageSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('message')->truncate();
-        DB::table('message_time')->truncate();
-
         for ($i = 0; $i < 100; $i++) {
             try {
                 $strRandom = Str::random(100);

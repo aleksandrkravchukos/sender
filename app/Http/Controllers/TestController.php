@@ -16,18 +16,6 @@ class TestController extends Controller
 
     public function test()
     {
-
-        //$messages = $this->messageRepository->getAllMessagesByTime('17:00');
-        $messages = $this->messageRepository->getMessagesForSendByTime('16:10');
-
-        dd($messages);
-//
-//        foreach ($messagesTime as $oneRow) {
-//            $realMessage = $oneRow->message->message;
-//
-//            Mail::to('leos2000@gmail.com')
-//                ->send(new EmailForQueuing(strval($realMessage)));
-//        }
-
+        return 'test';
     }
 }
