@@ -4,6 +4,7 @@
     <title>Laravel Mail Queue Tutorial</title>
 </head>
 <body>
-<p>Hello! This is a test email.</p>
+<p>Hello! .</p>
+<p>{{$body_message}}</p>
 </body>
 </html>

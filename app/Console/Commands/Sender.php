@@ -13,6 +13,7 @@ class Sender extends Command
      * @var string
      */
     protected $signature = 'send';
+
     public function __construct()
     {
         parent::__construct();

@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Services\SenderInterface;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,14 +12,16 @@ class EmailForQueuing extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $message;
+
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param string $message
      */
-    public function __construct()
+    public function __construct(string $message)
     {
-        //
+        $this->message = $message;
     }
 
     /**
@@ -28,8 +31,11 @@ class EmailForQueuing extends Mailable
      */
     public function build()
     {
-        return $this->from('alrksandr.kravchuk@ukr.net', 'Mailtrap')
+        return $this->from(SenderInterface::SAMPLE_SEND_TO_EMAIL, SenderInterface::SAMPLE_SEND_TO_NAME)
             ->subject('Test Queued Email')
-            ->view('example');
+            ->view('emails.example_mail')
+            ->with([
+                'body_message' => $this->message
+            ]);
     }
 }

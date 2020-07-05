@@ -3,13 +3,24 @@
 namespace App\Services;
 
 
-class Sender
+use App\Mail\EmailForQueuing;
+use App\MessageTime;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+
+class Sender implements SenderInterface
 {
     protected $response;
     protected $debug = false;
 
+    private $messageToSend;
+
+    private $mailTo;
+
     public function __construct()
     {
+        $this->messageToSend = '';
+        $this->mailTo = '';
     }
 
     public function setResponse($response)
@@ -17,12 +28,15 @@ class Sender
         $this->response = $response;
     }
 
-    public function setDebug($debug)
+    /**
+     * @param int $debug
+     */
+    public function setDebug(int $debug)
     {
         $this->debug = $debug;
     }
 
-    protected function log($message)
+    public function log(string $message)
     {
         if ($this->debug) {
             echo $message . "\n";
@@ -34,8 +48,15 @@ class Sender
      */
     public function request()
     {
-        for ($i = 1; $i <= 20; $i++) {
-            $this->log('i = ' . $i);
+
+        $messagesTime = MessageTime::where('start_time', '<=', Carbon::now()->toDateTimeString())->limit(2)->get();
+
+        foreach ($messagesTime as $oneRow) {
+            $realMessage = $oneRow->message->message;
+
+            Mail::to('leos2000@gmail.com')
+                ->queue(new EmailForQueuing(strval($realMessage)));
         }
+
     }
 }
