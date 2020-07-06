@@ -36,6 +36,13 @@ Task.
 
 * Inform the time of the task.
 
+## All sent messages go to fake smtp server <a href="https://prnt.sc/tcf7b6">mailtrap</a>. 
+
+* You can change your credentials in env file for testing your app.
+
+    * MAIL_USERNAME=c3cdcb82d***
+    * MAIL_PASSWORD=3309f36471*** 
+
 ## Prerequisites
 
 Install Docker.
@@ -99,9 +106,4 @@ Install Docker.
      docker exec -it app_task php artisan test
      
      
-* all sent messages go to fake smtp server <a href="https://prnt.sc/tcf7b6">mailtrap</a>. 
-* You can change your credentials in env file for testing your app.
-
-    MAIL_USERNAME=c3cdcb82d***
-    MAIL_PASSWORD=3309f36471*** 
      
