@@ -14,6 +14,10 @@
   
   - The is a drawback that in case some minute is missed by cron. the email for this minute will not be sent. For this case It may be needed to add additional logic.
 
+  - .env  / .env.testing and phpunit.xml in the real projects should be in dist files with dummy values, but for simplification I've left them as is without dist.
+    
+  - add not success cases to tests and check point that may need exception handling
+  
 Task.
 
 * The company has a database of customers who need to send email messages throughout the day. Each client is in its own time zone. Each message has a sending schedule (e.g. 12:00, 13:02). 
