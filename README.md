@@ -1,5 +1,19 @@
 # Email sender with timezones.
 
+## Solution architecture description
+
+* To be able to encount client's timezone this solution creates a related table "message_time_in_time_zone" with all 24 timezones relating to UTC time.
+
+* Every minute console send command shoud be executed by cron and it selects clients and messages that should be emailed ob this menute according to timezone ( joins timesheet table with alltimezones wilt clients on timezone field - see repository query).
+
+* Emails are sent asynonymously - added to queue using Laravel mailer and send via Laravel's background worer solution.
+
+* This implementation uses relational database as tranport for worker, but in prodyction implementation its better to use amqp brokers like Rabbbit Mq.
+
+* TODOs:
+  
+  - The is a drawback that in case some minute is missed by cron. the email for this minute will not be sent. For this case It may be needed to add additional logic.
+
 Task.
 
 * The company has a database of customers who need to send email messages throughout the day. Each client is in its own time zone. Each message has a sending schedule (e.g. 12:00, 13:02). 
@@ -17,11 +31,6 @@ Task.
 * Requirements: use the Laravel framework.
 
 * Inform the time of the task.
-
-## Solution architecture description
-
-    To be able to encount client's timezone this solution creates a related table "message_time_in_time_zone" 
-    with all 24 timezones relating to UTC time.
 
 ## Prerequisites
 
