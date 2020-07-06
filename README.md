@@ -1,4 +1,4 @@
-# Docker / PHP 7.4 console / composer / phpunit 
+# Email sender with timezones.
 
 Task.
 
