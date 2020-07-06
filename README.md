@@ -2,17 +2,21 @@
 
 Task.
 
-*The company has a database of customers who need to send email messages throughout the day. Each client is in its own time zone. Each message has a sending schedule (e.g. 12:00, 13:02). Each message can be sent an unlimited number of times throughout the day and are not tied to customers.
+* The company has a database of customers who need to send email messages throughout the day. Each client is in its own time zone. Each message has a sending schedule (e.g. 12:00, 13:02). 
 
-*You need to write a console command that will send emails to clients at the right time in the client’s time zone, provided that the application server is running on UTC + 02: 00. Keep messages, schedules and customers need in the database. Create models, migrations, siders.
+* Each message can be sent an unlimited number of times throughout the day and are not tied to customers.
 
-*When developing, consider the size of the message base and clients.
-*Customers in the database - 1 million.
-*Messages - 10 thousand
+* You need to write a console command that will send emails to clients at the right time in the client’s time zone, provided that the application server is running on UTC + 02: 00. 
 
-*Requirements: use the Laravel framework.
+* Keep messages, schedules and customers need in the database. Create models, migrations, seeders.
 
-*Inform the time of the task.
+* When developing, consider the size of the message base and clients.
+* Customers in the database - 1 million.
+* Messages - 10 thousand
+
+* Requirements: use the Laravel framework.
+
+* Inform the time of the task.
 
 ## Prerequisites
 
