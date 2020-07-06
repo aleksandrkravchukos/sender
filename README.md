@@ -24,7 +24,9 @@ Install Docker.
 
 ## Clone the repo
 
+     git clone https://github.com/aleksandrkravchukos/sender.git
      
+     cd sender
 
 ## Build docker containers
 
