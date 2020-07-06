@@ -18,6 +18,10 @@ Task.
 
 * Inform the time of the task.
 
+## Solution architecture description
+
+    To be able to encount clint's timezone this solution creates a related table "message_time_in_time_zone" with all 24 timezones relating to UTC time.
+
 ## Prerequisites
 
 Install Docker.
